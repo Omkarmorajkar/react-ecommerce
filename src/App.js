@@ -5,6 +5,7 @@ import Products from "./component/Products/Products";
 import Error from "./component/ui/Error";
 import AppLayout from "./component/ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Cart from "./component/cart/Cart";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/viewProduct/:id",
         element: <ViewProduct />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
