@@ -24,25 +24,33 @@ function ViewProduct() {
   if (error) return <div className="text-red-500">Error: {error.message}</div>;
   if (!product)
     return (
-      <div className="flex justify-center items-center w-auto h-auto font-bold text-3xl">
+      <div className="flex justify-center dark:text-slate-200 items-center w-auto h-[60vh] font-bold text-3xl">
         Loading...
       </div>
     );
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-8 dark:text-slate-200">
       <div className="flex justify-center items-center">
         <img
-          className="w-full max-h-[50vh] object-contain"
+          className="w-full max-h-[50vh] object-contain rounded-2xl"
           src={product.image}
           alt="product"
         />
       </div>
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-2">{product.title}</h2>
-        <p className="text-gray-600 mb-4">{product.category}</p>
-        <p className="text-gray-800 mb-4">{product.description}</p>
-        <p className="text-blue-600 font-bold text-lg">${product.price}</p>
+        <h2 className="text-2xl font-bold mb-2 dark:text-slate-200">
+          {product.title}
+        </h2>
+        <p className="text-gray-600 mb-4 dark:text-slate-200">
+          {product.category}
+        </p>
+        <p className="text-gray-800 mb-4 dark:text-slate-200">
+          {product.description}
+        </p>
+        <p className="text-blue-600 font-bold text-lg dark:text-slate-200">
+          ${product.price}
+        </p>
       </div>
       <button
         className="bg-gray-400 shadow-lg px-4 py-2 rounded-lg hover:bg-gray-300"
