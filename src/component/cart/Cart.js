@@ -12,9 +12,6 @@ const Cart = () => {
 
   const total = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 
-  const { productId, quantity } = cartItems;
-  console.log("Product Id", productId, " quantity ", quantity);
-
   return (
     <div className="p-4  container max-w-lg">
       <h2 className="text-2xl font-bold mb-4 dark:text-slate-200">

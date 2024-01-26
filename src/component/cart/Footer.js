@@ -77,7 +77,7 @@ const Footer = ({ total }) => {
         >
           Clear Cart
         </button>
-        <button className="bg-gray-400 font-bold w-full lg:w-48 hover:bg-green-700 text-white px-4 py-2 rounded-xl">
+        <button className="bg-gray-400 font-bold w-full lg:w-48 hover:bg-gray-500 text-white px-4 py-2 rounded-xl">
           Order
         </button>
       </div>
