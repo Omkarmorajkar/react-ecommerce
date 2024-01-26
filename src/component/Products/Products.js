@@ -4,7 +4,10 @@ import { getProduct } from "../../services/api";
 import ProductData from "./ProductData";
 
 function Products() {
-  const { isLoading, error, data } = useQuery("products", getProduct);
+  const { isLoading, error, data } = useQuery("products", getProduct, {
+    staleTime: 60000, // Example: data is considered fresh for 60 seconds
+  });
+  console.log(error);
 
   if (isLoading)
     return (
@@ -12,6 +15,7 @@ function Products() {
         Loading...
       </div>
     );
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (
