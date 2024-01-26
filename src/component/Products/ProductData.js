@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addItem, getTotalCartQuantityById } from "./cartSlice";
-import store from "../../store";
+import { addItem, getTotalCartQuantityById } from "../cart/cartSlice";
 import UpdateItemQuantity from "./UpdateItemQuantity";
 
 function ProductData({ item }) {
@@ -31,8 +30,6 @@ function ProductData({ item }) {
     };
 
     dispatch(addItem(newItem));
-    const updatedState = store.getState();
-    console.log(updatedState.cart.cart);
   };
 
   return (
@@ -65,6 +62,7 @@ function ProductData({ item }) {
           <UpdateItemQuantity
             productId={id}
             currentQuantity={currentQuantity}
+            size={"w-16"}
           />
         ) : (
           <button

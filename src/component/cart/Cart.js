@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UpdateItemQuantity from "../Products/UpdateItemQuantity";
-import { deleteItem } from "../Products/cartSlice";
+import { deleteItem } from "./cartSlice";
 import Footer from "./Footer";
 
 const Cart = () => {
@@ -16,8 +16,10 @@ const Cart = () => {
   console.log("Product Id", productId, " quantity ", quantity);
 
   return (
-    <div className="p-4 container max-w-lg">
-      <h2 className="text-2xl font-bold mb-4 dark:text-slate-200">Your Cart</h2>
+    <div className="p-4  container max-w-lg">
+      <h2 className="text-2xl font-bold mb-4 dark:text-slate-200">
+        Shopping Cart
+      </h2>
 
       {cartItems.length === 0 ? (
         <div className="w-full h-[60vh] flex justify-center items-center text-3xl dark:text-slate-200 font-bold ">
@@ -56,9 +58,10 @@ const Cart = () => {
                   <UpdateItemQuantity
                     productId={item.productId}
                     currentQuantity={item.quantity}
+                    size={"w-16"}
                   />
                   <button
-                    className="bg-red-800 hover:bg-red-500  text-white px-3 py-1 rounded-lg"
+                    className="bg-red-500 hover:bg-red-800  text-white px-3 py-1 rounded-lg"
                     onClick={() => dispatch(deleteItem(item.productId))}
                   >
                     Remove

@@ -9,7 +9,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      state.cart.push(action.payload);
+      state.cart = [...state.cart, action.payload];
     },
     deleteItem(state, action) {
       state.cart = state.cart.filter(
@@ -51,3 +51,6 @@ export default cartSlice.reducer;
 
 export const getTotalCartQuantityById = (id) => (state) =>
   state.cart.cart.find((item) => item.productId === id)?.quantity ?? 0;
+
+export const getTotalCartQuantity = (state) =>
+  state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);

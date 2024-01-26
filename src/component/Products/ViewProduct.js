@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { singleProduct } from "../../services/api";
+import { addItem, getTotalCartQuantityById } from "../cart/cartSlice";
+import UpdateItemQuantity from "./UpdateItemQuantity";
 
 function ViewProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+
+  const currentQuantity = useSelector(getTotalCartQuantityById(id));
+  const isInCart = currentQuantity > 0;
+  console.log("isinCart " + isInCart);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -20,6 +28,30 @@ function ViewProduct() {
 
     fetchProduct();
   }, [id]);
+
+  if (error) return <div className="text-red-500">Error: {error.message}</div>;
+  if (!product)
+    return (
+      <div className="flex justify-center dark:text-slate-200 items-center w-auto h-[60vh] font-bold text-3xl">
+        Loading...
+      </div>
+    );
+
+  const { image, title, category, price } = product;
+
+  const handleCart = () => {
+    const newItem = {
+      productId: id,
+      image,
+      title,
+      category,
+      quantity: 1,
+      price,
+      totalPrice: price * 1,
+    };
+
+    dispatch(addItem(newItem));
+  };
 
   if (error) return <div className="text-red-500">Error: {error.message}</div>;
   if (!product)
@@ -49,21 +81,27 @@ function ViewProduct() {
           {product.description}
         </p>
         <p className="text-blue-600 font-bold text-lg dark:text-slate-200">
-          ${product.price}
+          Price : ${product.price}
         </p>
       </div>
-      <button
-        className="bg-gray-400 shadow-lg px-4 py-2 rounded-lg hover:bg-gray-300"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        back
-      </button>
 
-      <button className="bg-green-500 ml-4 hover:bg-green-700 px-4 py-2 text-white rounded-xl">
-        Add to Cart
-      </button>
+      {isInCart ? (
+        <div className=" flex  items-center gap-4">
+          Quantity :
+          <UpdateItemQuantity
+            productId={id}
+            currentQuantity={currentQuantity}
+            size={"w-12"}
+          />
+        </div>
+      ) : (
+        <button
+          onClick={handleCart}
+          className="bg-green-500 md:px-4 md:py-2 px-3 py-1 rounded-xl text-sm hover:bg-green-600 text-white font-bold"
+        >
+          Add to cart
+        </button>
+      )}
     </div>
   );
 }
