@@ -10,9 +10,8 @@ function ViewProduct() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
-  const currentQuantity = useSelector(getTotalCartQuantityById(id));
+  const currentQuantity = useSelector(getTotalCartQuantityById(parseInt(id)));
   const isInCart = currentQuantity > 0;
-  console.log("isinCart " + isInCart);
 
   const dispatch = useDispatch();
 
@@ -41,7 +40,7 @@ function ViewProduct() {
 
   const handleCart = () => {
     const newItem = {
-      productId: id,
+      productId: parseInt(id),
       image,
       title,
       category,
@@ -89,7 +88,7 @@ function ViewProduct() {
         <div className=" flex  items-center gap-4">
           Quantity :
           <UpdateItemQuantity
-            productId={id}
+            productId={parseInt(id)}
             currentQuantity={currentQuantity}
             size={"w-12"}
           />
