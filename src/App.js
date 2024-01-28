@@ -6,6 +6,7 @@ import Error from "./component/ui/Error";
 import AppLayout from "./component/ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Cart from "./component/cart/Cart";
+import Home from "./component/ui/Home";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/products",
         element: <Products />,
         // loader: productLoader, (Removed as React Query handles data fetching)
         errorElement: <Error />,

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import ClearCartConfirmation from "./ClearCartConfirmation";
 import { motion, AnimatePresence } from "framer-motion";
+import OrderForm from "./OrderForm";
 
 const Footer = ({ total }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Footer = ({ total }) => {
 
   const [isIconClicked, setIconClicked] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showOrderForm, setShowOrderForm] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   useEffect(() => {
@@ -28,6 +30,10 @@ const Footer = ({ total }) => {
 
   const toggleIconClick = () => {
     setIconClicked(!isIconClicked);
+  };
+
+  const handleOrder = () => {
+    setShowOrderForm(!showOrderForm);
   };
 
   const handleClearCart = () => {
@@ -77,7 +83,10 @@ const Footer = ({ total }) => {
         >
           Clear Cart
         </button>
-        <button className="bg-gray-400 font-bold w-full lg:w-48 hover:bg-gray-500 text-white px-4 py-2 rounded-xl">
+        <button
+          onClick={handleOrder}
+          className="bg-gray-400 font-bold w-full lg:w-48 hover:bg-gray-500 text-white px-4 py-2 rounded-xl"
+        >
           Order
         </button>
       </div>
@@ -101,6 +110,9 @@ const Footer = ({ total }) => {
             onCancel={handleCancelClearCart}
           />
         )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showOrderForm && <OrderForm handleOrder={handleOrder} />}
       </AnimatePresence>
     </footer>
   );

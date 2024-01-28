@@ -1,13 +1,19 @@
 const API_URI = "https://fakestoreapi.com";
 
 export async function getProduct() {
-  const res = await fetch(`${API_URI}/products`);
+  try {
+    const res = await fetch(`${API_URI}/products`);
 
-  if (!res.ok) throw Error("Failed getting Products");
+    if (!res.ok) {
+      throw Error("Failed getting Products");
+    }
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    throw Error("Network error or failed to fetch");
+  }
 }
 
 export async function singleProduct(id) {
