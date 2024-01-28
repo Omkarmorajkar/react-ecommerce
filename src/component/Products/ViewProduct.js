@@ -28,13 +28,23 @@ function ViewProduct() {
     fetchProduct();
   }, [id]);
 
-  if (error) return <div className="text-red-500">Error: {error.message}</div>;
-  if (!product)
+  const renderLoading = (
+    <div className="flex justify-center dark:text-slate-200 items-center w-auto h-[60vh] font-bold text-3xl">
+      Loading...
+    </div>
+  );
+
+  if (error || !product) {
     return (
-      <div className="flex justify-center dark:text-slate-200 items-center w-auto h-[60vh] font-bold text-3xl">
-        Loading...
-      </div>
+      <>
+        {error ? (
+          <div className="text-red-500">Error: {error.message}</div>
+        ) : (
+          renderLoading
+        )}
+      </>
     );
+  }
 
   const { image, title, category, price } = product;
 

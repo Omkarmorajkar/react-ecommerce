@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Hamburger from "./Hamburger";
 import SidebarLinks from "./SidebarLinks";
@@ -6,11 +6,18 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"; // Import the specific icon
 import DarkModeToggle from "./DarkModeToggle";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const SidebarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    toast.warning(
+      "This website is currently in development, and certain features may not be fully operational. "
+    );
+  }, []);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -49,7 +56,6 @@ const SidebarComponent = () => {
       </div>
 
       {/* Sidebar */}
-
       <motion.div
         initial={false}
         animate={isOpen ? "open" : "closed"}
@@ -60,11 +66,11 @@ const SidebarComponent = () => {
           <SidebarLinks toggleSidebar={toggleSidebar} />
         </div>
       </motion.div>
-
       <div
         className={`${contentAreaClass} overflow-x-auto md:overflow-x-hidden`}
       >
         <main className="w-full  flex flex-col items-center mb-7 lg:mb-3 h-[90vh] overflow-y-auto p-4 bg-gray-100 dark:bg-slate-800 rounded-xl">
+          <ToastContainer />
           <Outlet />
         </main>
       </div>
