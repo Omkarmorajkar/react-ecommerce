@@ -8,10 +8,12 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"; // Import th
 import DarkModeToggle from "./DarkModeToggle";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const SidebarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const username = useSelector((state) => state.user.username);
 
   useEffect(() => {
     toast.warning(
@@ -45,6 +47,11 @@ const SidebarComponent = () => {
         <div className="flex justify-between px-8 items-center">
           <Hamburger isOpen={isOpen} toggleSidebar={toggleSidebar} />
           <div className="flex gap-4 font-bold text-black  items-center">
+            {username ? (
+              <span className="text-black dark:text-slate-200">{username}</span>
+            ) : (
+              ""
+            )}
             <FontAwesomeIcon
               icon={faShoppingCart}
               className="dark:text-white"

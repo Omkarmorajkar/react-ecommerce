@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 function OrderForm({ handleOrder }) {
+  const username = useSelector((state) => state.user.username);
+  console.log(username);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,11 +31,13 @@ function OrderForm({ handleOrder }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, you can send the formData to a server or perform other actions
     console.log("Form submitted:", formData);
-    // You can also close the form or perform other actions here
+
     handleOrder();
   };
+
+  const inputStyle =
+    "border p-2 w-full rounded-xl text-black dark:text-slate-800 outline-double outline-gray-400 ring-4 ring-gray-400 shadow-inner shadow-gray-500";
 
   return (
     <div>
@@ -51,12 +56,14 @@ function OrderForm({ handleOrder }) {
             className="dark:text-slate-300 text-black text-xl fixed right-4 top-3 cursor-pointer"
             onClick={handleOrder}
           />
-          <h2 className="text-2xl font-bold mb-4">Order Form</h2>
+          <h2 className="text-2xl font-bold mb-4 text-black dark:text-slate-200">
+            Order Form
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 htmlFor="name"
-                className="block text-sm font-semibold mb-1"
+                className="block text-sm font-semibold mb-1 text-black dark:text-slate-200"
               >
                 Name:
               </label>
@@ -66,7 +73,7 @@ function OrderForm({ handleOrder }) {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="border p-2 w-full rounded-xl"
+                className={inputStyle}
                 required
               />
             </div>
@@ -74,7 +81,7 @@ function OrderForm({ handleOrder }) {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-semibold mb-1"
+                className="block text-sm font-semibold mb-1 text-black dark:text-slate-200"
               >
                 Email:
               </label>
@@ -84,7 +91,7 @@ function OrderForm({ handleOrder }) {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="border p-2 w-full rounded-xl"
+                className={inputStyle}
                 required
               />
             </div>
@@ -92,7 +99,7 @@ function OrderForm({ handleOrder }) {
             <div className="mb-4">
               <label
                 htmlFor="address"
-                className="block text-sm font-semibold mb-1"
+                className="block text-sm font-semibold mb-1 text-black dark:text-slate-200"
               >
                 Address:
               </label>
@@ -101,19 +108,20 @@ function OrderForm({ handleOrder }) {
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
-                className="border p-2 w-full rounded-xl outline-slate-600 "
+                className={inputStyle}
                 required
               />
             </div>
 
             {/* Add more form fields as needed */}
-
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-lg transition duration-300"
-            >
-              Submit Order
-            </button>
+            <div className="w-full flex justify-center items-center">
+              <button
+                type="submit"
+                className="bg-blue-500 ring-4 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-md transition duration-300"
+              >
+                Submit Order
+              </button>
+            </div>
           </form>
         </motion.div>
       </motion.div>
