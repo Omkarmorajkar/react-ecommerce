@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-tailwind/react": "^2.1.4",
     "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-query-devtools": "^5.17.21",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

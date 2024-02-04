@@ -6,9 +6,8 @@ import ProductData from "./ProductData";
 function Products() {
   const { isLoading, error, data, refetch } = useQuery("products", getProduct, {
     staleTime: 60000, // Example: data is considered fresh for 10 seconds
+    retry: 3,
   });
-
-  console.log(error);
 
   if (isLoading)
     return (
