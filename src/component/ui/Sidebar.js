@@ -35,7 +35,7 @@ const SidebarComponent = () => {
 `;
   const contentAreaClass = ` ${
     isOpen
-      ? "lg:col-span-10 md:hidden sm:hidden lg:translate-x-0 translate-x-full hidden lg:block "
+      ? "lg:col-span-10 md:hidden sm:hidden lg:translate-x-0 translate-x-full hidden lg:block"
       : "col-span-12 "
   } `;
 
@@ -48,13 +48,15 @@ const SidebarComponent = () => {
           <Hamburger isOpen={isOpen} toggleSidebar={toggleSidebar} />
           <div className="flex gap-4 font-bold text-black  items-center">
             {username ? (
-              <span className="text-black dark:text-slate-200">{username}</span>
+              <span className="text-black dark:text-slate-200 ">
+                {username}
+              </span>
             ) : (
               ""
             )}
             <FontAwesomeIcon
               icon={faShoppingCart}
-              className="dark:text-white"
+              className="dark:text-white hover:cursor-pointer  shadow-black"
               onClick={() => navigate("/cart")}
             />
             <DarkModeToggle />

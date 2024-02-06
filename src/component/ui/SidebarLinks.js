@@ -31,7 +31,7 @@ function SidebarLinks({ toggleSidebar }) {
   };
 
   const LinkStyle =
-    "hover:bg-gray-100 dark:hover:bg-slate-600 dark:text-slate-300 flex gap-3 lg:justify-start justify-center items-center hover:shadow-md  hover:rounded-xl hover:text-black w-full text-center px-8 w-16 py-2 font-bold transition-all duration-300";
+    "hover:bg-gray-100 hover:outline-double hover:outline-4 outline-gray-300 ring-gray-300 dark:hover:bg-slate-600 dark:text-slate-300 flex gap-3 lg:justify-start justify-center items-center hover:shadow-md  hover:rounded-xl hover:text-black w-full text-center px-8 w-16 py-2 font-bold transition-all duration-300";
 
   const DropdownStyle = `
     mt-2 
