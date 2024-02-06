@@ -9,6 +9,8 @@ function Home() {
 
   const user = useSelector((state) => state.user.username);
 
+  const inputStyle =
+    "w-80 rounded-full bg-white border border-gray-300 p-2 text-center text-gray-500 font-sans font-bold shadow-md shadow-gray-500 outline-gray-400 transition-all duration-300 placeholder:font-sans placeholder:text-gray-500 focus:shadow-inner focus:shadow-gray-500 focus:outline-double focus:outline-8 focus:outline-gray-300 dark:focus:outline-slate-300 dark:focus:shadow-slate-900 dark:shadow-slate-900 dark:placeholder:text-slate-600";
   const [username, setUsername] = useState("");
 
   function handleSubmit(e) {
@@ -37,7 +39,7 @@ function Home() {
                 placeholder="Enter your name"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-80 rounded-full font-bold placeholder:text-white placeholder:font-sans shadow-lg font-sans text-center bg-gray-400 p-2 font-mono outline-double outline-offset-4 outline-gray-400 focus:outline-gray-600 text-white"
+                className={inputStyle}
               />
             </div>
           </form>

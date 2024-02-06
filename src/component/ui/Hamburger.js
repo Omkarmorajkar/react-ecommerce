@@ -10,7 +10,7 @@ function Hamburger({ toggleSidebar, isOpen }) {
           }`}
         ></span>
         <span
-          className={`block h-1 w-6 bg-black mt-1 dark:bg-white transition-opacity ${
+          className={`block h-1 w-4 bg-black mt-1 dark:bg-white transition-opacity ${
             isOpen ? "opacity-0" : ""
           }`}
         ></span>
